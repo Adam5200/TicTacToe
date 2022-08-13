@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+
+
+    <div class="container-fluid text-center">
+        <h1 style="color: black;">TIC TAC TOE</h1>
+    </div>
+    <br>
+
+    <div class="container-fluid text-center">
+
+    </div>
+            
+    <div class="container-fluid text-center">
+        <h1 id="title">PLAYER 1 (X) IT IS YOUR TURN</h1>
+        <center>
+            <table>
+                <tr>
+                    <td><button class="square1 r"></button></td>
+                    <td><button class="square2 r"></button></td>
+                    <td><button class="square3 r"></button></td>
+                </tr>
+                <tr>
+                    <td><button class="square4 r"></button></td>
+                    <td><button class="square5 r"></button></td>
+                    <td><button class="square6 r"></button></td>
+                </tr>
+                <tr>
+                    <td><button class="square7 r"></button></td>
+                    <td><button class="square8 r"></button></td>
+                    <td><button class="square9 r"></button></td>
+                </tr>
+            </table>
+            <br>
+            <input type="button" class="reset btn btn-danger btn-block" value="RESET" onClick="reset()"/>
+        </center>
+    </div>
+
+    <script>  
+        
+        
+        
+        $("button").click(function() {
+            if(($(this).hasClass("fa fa-times") || $(this).hasClass("fa fa-circle")) && gameOver === false) {      
+                $(this).css("background-color", "red");
+                setTimeout(() => {
+                    $(this).css("background-color", "white");
+                }, 800);
+                mistake = true;  
+            }
+        });
+
+        $("button").click(function() {
+            if(mistake === false && gameOver === false) {
+                if(turn == 1) {
+                    $("#title").text("PLAYER 2 (O) IT IS YOUR TURN");
+            
+                    $(this).addClass("fa fa-circle");
+                    turn = 2;           
+                }
+                else {   
+                    $("#title").text("PLAYER 1 (X) IT IS YOUR TURN");
+                
+                    $(this).addClass("fa fa-times");
+                    turn = 1;
+                }
+            }
+            mistake = false;
+            if (check("fa fa-times")) {
+                $("#title").text("PLAYER 1 (X) WINS!");
+                gameOver = true;
+            }
+            if (check("fa fa-circle")) {
+                $("#title").text("PLAYER 2 (O) WINS!");
+                gameOver = true;
+            }
+            
+        });
+
+        
+    </script>
+    <script src="ttt.js"></script>
+</body>
+</html>

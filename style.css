@@ -1,0 +1,24 @@
+
+button {
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid rgb(37, 26, 26);
+}
+
+
+
+.fa {
+    font-size: 48px;
+    color: black;
+}
+
+.reset {
+    padding: 8px;
+}
+
+.reset:hover {
+    opacity: 0.8;
+}
