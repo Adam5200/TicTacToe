@@ -1,30 +1,15 @@
+//keeping track of which player's turn it currently is
 var turn = 1;
+
 //this variable will be set to true if the player accidentally clicks a square which they cannot play in.
 //it prevents the program from switching to the other player
 var mistake = false;
-var gameOver = false;
-let customers = [
-    {
-  
-      firstName: "Sam",
-  
-      lastName: "Smith",
-  
-      email: "sam.smith@gmail.com"
-  
-    },
-  
-    {
-  
-      firstName: "Tom",
-  
-      lastName: "Jones",
-  
-      email: "tom.jones@gmail.com"
-  
-    }
-  ]
 
+//only set to true when a winning condition is met by either player
+var gameOver = false;
+
+//this function will check if a player has won, if three in a row in any direction are found, the symbols go green and the board is eventually reset
+//note: After a winning case is found, the game will auto reset after 2 seconds
 function check(symbol) {
 
     if ($(".square1").hasClass(symbol) &&
@@ -96,6 +81,7 @@ function check(symbol) {
     }
 }
 
+//basically wipes all gameplay data, leaving a blank slate
 function reset()
 {
     $("#title").text("PLAYER 1 (X) IT IS YOUR TURN");
@@ -103,7 +89,7 @@ function reset()
     $(".r").removeClass("fa fa-times");
     turn = 1;
     gameOver = false;
-    // Reset Colors
+    //All squares go back to black
     $(".square1").css("color", "black");
     $(".square2").css("color", "black");
     $(".square3").css("color", "black");

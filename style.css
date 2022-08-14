@@ -1,4 +1,4 @@
-
+/*Handles the style of the board objects (the individual squares)*/
 button {
     height: 100px;
     width: 100px;
@@ -8,15 +8,16 @@ button {
     border: 1px solid rgb(37, 26, 26);
 }
 
-
-
+/*fa = FONT AWESOME, a really cool fontset that has many useful symbols. Here we use "times" for X and "circle" for O */
 .fa {
     font-size: 48px;
     color: black;
 }
 
+/*Handles the style of the reset button*/
 .reset {
     padding: 8px;
+    max-width: 300px;
 }
 
 .reset:hover {

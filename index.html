@@ -7,25 +7,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--FONT AWESOME-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
 
 <body>
-
-
     <div class="container-fluid text-center">
         <h1 style="color: black;">TIC TAC TOE</h1>
     </div>
     <br>
-
-    <div class="container-fluid text-center">
-
-    </div>
-            
     <div class="container-fluid text-center">
         <h1 id="title">PLAYER 1 (X) IT IS YOUR TURN</h1>
+        <!-- TABLE OF BUTTONS, REPRESENTING THE TIC TAC TOE BOARD -->
+        <!-- Note: The "r" is so when the board is reset, all squares are affected -->
         <center>
             <table>
                 <tr>
@@ -45,35 +42,41 @@
                 </tr>
             </table>
             <br>
+            <!--BUTTON TO RESET BOARD-->
             <input type="button" class="reset btn btn-danger btn-block" value="RESET" onClick="reset()"/>
         </center>
     </div>
 
     <script>  
-        
-        
-        
+        //If a button is pressed where a symbol already exists, this method will alert that you've made a mistake, and allow the
+        //current player to try again. 
         $("button").click(function() {
             if(($(this).hasClass("fa fa-times") || $(this).hasClass("fa fa-circle")) && gameOver === false) {      
                 $(this).css("background-color", "red");
+                //800 millisecond window where the mistaken square turns red.
                 setTimeout(() => {
                     $(this).css("background-color", "white");
                 }, 800);
+                //this value is used primarily so that if a player clicks an invalid square, they don't lose their turn
                 mistake = true;  
             }
         });
 
+        //function to handle clicking the squares
         $("button").click(function() {
+
+            //checking to make sure a move is allowed
             if(mistake === false && gameOver === false) {
+                //switches whos turn it is, and also draws the player's symbol in the square they click.
                 if(turn == 1) {
                     $("#title").text("PLAYER 2 (O) IT IS YOUR TURN");
-            
+                    //O
                     $(this).addClass("fa fa-circle");
                     turn = 2;           
                 }
                 else {   
                     $("#title").text("PLAYER 1 (X) IT IS YOUR TURN");
-                
+                    //X
                     $(this).addClass("fa fa-times");
                     turn = 1;
                 }
@@ -82,15 +85,20 @@
             if (check("fa fa-times")) {
                 $("#title").text("PLAYER 1 (X) WINS!");
                 gameOver = true;
+                //GAME AUTO RESETS AFTER 2 SECONDS
+                setTimeout(() => {
+                    reset();
+                }, 2000);
             }
             if (check("fa fa-circle")) {
                 $("#title").text("PLAYER 2 (O) WINS!");
                 gameOver = true;
-            }
-            
+                //GAME AUTO RESETS AFTER 2 SECONDS
+                setTimeout(() => {
+                    reset();
+                }, 2000);
+            }            
         });
-
-        
     </script>
     <script src="ttt.js"></script>
 </body>
